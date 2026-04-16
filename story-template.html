@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訪談標題 · 珈斑樂舞團</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Noto+Sans+Myanmar:wght@400&family=Cinzel:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5EDD8;
+  --c1: #C8582A;
+  --c1-pale: #FDF1EC;
+  --text: #2A1A08;
+  --muted: #7A5C38;
+  --teal: #2E6860;
+  --interviewer: #2E6860;   /* 訪談者問題顏色 */
+  --interviewee: #2A1A08;   /* 受訪者回答顏色 */
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Noto Serif TC',serif;
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='46'%3E%3Cpath d='M0 23 Q17.5 6 35 23 Q52.5 40 70 23 Q87.5 6 105 23 Q122.5 40 140 23' fill='none' stroke='%238FBFB8' stroke-width='1.3' opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat:repeat; background-size:140px 46px;
+  color:var(--text); min-height:100vh;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 40px;
+  background:rgba(245,237,216,0.92); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,152,42,0.15);
+}
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-zh { font-size:14px; font-weight:700; color:#8a6010; display:block; line-height:1.25; }
+.nav-my { font-family:'Noto Sans Myanmar',sans-serif; font-size:11px; color:var(--teal); display:block; }
+.nav-back {
+  display:flex; align-items:center; gap:7px;
+  font-size:12px; color:var(--muted); text-decoration:none;
+  padding:6px 14px; border-radius:20px;
+  border:1px solid rgba(200,152,42,0.25); transition:all .25s;
+}
+.nav-back:hover { background:rgba(200,152,42,.1); color:#8a6010; }
+@media(max-width:600px){ nav{padding:12px 20px;} }
+
+/* ── PAGE WRAP ── */
+.page { max-width:740px; margin:0 auto; padding:108px 40px 100px; }
+
+/* ── META ── */
+.meta {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:24px; flex-wrap:wrap;
+}
+.meta-year {
+  font-family:'Cinzel',serif; font-size:12px;
+  letter-spacing:.18em; color:var(--c1); font-weight:600;
+}
+.meta-dot { color:rgba(122,92,56,.3); }
+.meta-tag {
+  font-size:10px; padding:3px 11px; border-radius:10px;
+  background:rgba(200,88,42,.1); color:var(--c1); letter-spacing:.08em;
+}
+
+/* ── TITLE ── */
+.article-title {
+  font-size:clamp(28px,5vw,52px); font-weight:700;
+  line-height:1.1; color:var(--text); margin-bottom:14px;
+}
+.article-divider {
+  width:40px; height:2.5px; background:var(--c1);
+  border-radius:2px; margin-bottom:22px;
+}
+
+/* ── INTERVIEWEE INTRO CARD ── */
+.profile-card {
+  display:flex; gap:20px; align-items:center;
+  background:rgba(255,255,255,0.6);
+  border:1.5px solid rgba(255,255,255,.85);
+  border-radius:16px; padding:20px 22px;
+  margin-bottom:40px;
+  backdrop-filter:blur(6px);
+}
+.profile-photo {
+  width:72px; height:72px; border-radius:50%; flex-shrink:0;
+  background:rgba(245,237,216,.8);
+  border:2px dashed rgba(200,152,42,.35);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+/* 替換頭像：把 <div class="profile-photo"> 換成
+   <img src="頭像.jpg" style="width:72px;height:72px;border-radius:50%;object-fit:cover"> -->
+.profile-info { flex:1; }
+.profile-name {
+  font-size:18px; font-weight:700; color:var(--text); margin-bottom:3px;
+}
+.profile-name-my {
+  font-family:'Noto Sans Myanmar',sans-serif;
+  font-size:12px; color:var(--teal); margin-bottom:6px;
+}
+.profile-bio { font-size:13px; color:var(--muted); line-height:1.7; }
+
+/* ── COVER IMAGE ── */
+.cover-img {
+  width:100%; aspect-ratio:16/9;
+  background:rgba(255,255,255,0.5);
+  border:2px dashed rgba(200,152,42,.28);
+  border-radius:14px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+  margin-bottom:10px;
+}
+/* 替換：<img src="圖片.jpg" style="width:100%;border-radius:14px"> */
+.cover-caption {
+  font-size:11px; color:rgba(122,92,56,.38);
+  letter-spacing:.08em; text-align:center; margin-bottom:44px;
+}
+
+/* ── INTERVIEW BODY ── */
+.interview { display:flex; flex-direction:column; gap:32px; }
+
+/* Q&A pair */
+.qa-pair { display:flex; flex-direction:column; gap:14px; }
+
+/* Question */
+.q {
+  display:flex; gap:14px; align-items:flex-start;
+}
+.q-badge {
+  width:28px; height:28px; border-radius:50%; flex-shrink:0;
+  background:var(--teal);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:white;
+  letter-spacing:.05em; margin-top:2px;
+}
+.q-text {
+  font-size:16px; font-weight:700; color:var(--teal);
+  line-height:1.55; padding-top:3px; flex:1;
+}
+
+/* Answer */
+.a {
+  display:flex; gap:14px; align-items:flex-start;
+  padding-left:4px;
+}
+.a-badge {
+  width:28px; height:28px; border-radius:50%; flex-shrink:0;
+  background:var(--c1);
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:white;
+  letter-spacing:.05em; margin-top:2px;
+}
+.a-text {
+  font-size:15px; line-height:2.0; color:var(--interviewee);
+  flex:1;
+}
+
+/* Highlight quote — 特別精彩的回答可用這個 */
+.a-highlight {
+  background:var(--c1-pale);
+  border-left:3px solid var(--c1);
+  border-radius:0 14px 14px 0;
+  padding:18px 20px; margin-left:42px;
+  font-size:17px; font-style:italic;
+  line-height:1.85; color:var(--text);
+}
+
+/* inline image inside interview */
+.inline-img {
+  width:100%; aspect-ratio:4/3;
+  background:rgba(255,255,255,.5);
+  border:2px dashed rgba(200,152,42,.25);
+  border-radius:12px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px;
+  margin:8px 0 4px 42px;
+  width:calc(100% - 42px);
+}
+.inline-caption {
+  font-size:11px; color:rgba(122,92,56,.38);
+  margin-left:42px; margin-bottom:8px;
+}
+
+/* section divider within interview */
+.interview-break {
+  display:flex; align-items:center; gap:12px; margin:8px 0;
+}
+.interview-break-line { flex:1; height:1px; background:rgba(200,152,42,.18); }
+.interview-break-label {
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(122,92,56,.4); white-space:nowrap;
+}
+
+/* ── ARTICLE NAV ── */
+.article-nav {
+  margin-top:64px; padding-top:32px;
+  border-top:1px solid rgba(200,152,42,.2);
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+}
+.article-nav a {
+  display:flex; align-items:center; gap:8px;
+  font-size:13px; color:var(--muted); text-decoration:none;
+  padding:10px 16px; border-radius:12px;
+  border:1px solid rgba(200,152,42,.2); transition:all .25s; max-width:240px;
+}
+.article-nav a:hover { background:rgba(200,152,42,.08); color:var(--c1); }
+.article-nav a span { font-size:11px; display:block; color:var(--c1); margin-bottom:2px; opacity:.7; }
+
+@media(max-width:600px){
+  .page{padding:100px 20px 80px;}
+  .profile-card{flex-direction:column; align-items:flex-start;}
+  .inline-img{margin-left:0; width:100%;}
+  .inline-caption{margin-left:0;}
+  .a-highlight{margin-left:0;}
+  .article-nav{flex-direction:column;}
+  .article-nav a{max-width:100%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="#C8982A" stroke-width="2"/>
+      <circle cx="50" cy="50" r="36" stroke="#C8982A" stroke-width=".8" stroke-dasharray="4 3"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(45 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(90 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(135 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(225 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(270 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(315 50 50)"/>
+      <text x="50" y="47" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="10" font-weight="700" fill="#A87820">珈斑</text>
+      <text x="50" y="60" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="7.5" fill="#A87820">樂舞團</text>
+    </svg>
+    <div><span class="nav-zh">珈斑樂舞團</span><span class="nav-my">ကြပ်ပန်း</span></div>
+  </a>
+  <a href="community.html" class="nav-back">← 社群故事</a>
+</nav>
+
+<div class="page">
+
+  <!-- META -->
+  <div class="meta">
+    <span class="meta-year">1988</span><!-- ← 改年份 -->
+    <span class="meta-dot">·</span>
+    <span class="meta-tag">訪談</span>
+    <span class="meta-dot">·</span>
+    <span class="meta-tag">移民歷史</span><!-- ← 改標籤 -->
+  </div>
+
+  <!-- TITLE -->
+  <h1 class="article-title">
+    「那個時候，我們什麼都帶不走，只帶了歌。」
+    <!-- ← 改成你的訪談標題，建議用受訪者的一句話 -->
+  </h1>
+  <div class="article-divider"></div>
+
+  <!-- INTERVIEWEE PROFILE -->
+  <div class="profile-card">
+    <div class="profile-photo">
+      <!-- 替換頭像：
+      <img src="avatar.jpg" style="width:72px;height:72px;border-radius:50%;object-fit:cover">
+      -->
+      <svg width="30" height="30" viewBox="0 0 40 40" fill="none" opacity=".25">
+        <circle cx="20" cy="14" r="8" stroke="#7A5C38" stroke-width="1.5"/>
+        <path d="M4 38 Q4 28 20 28 Q36 28 36 38" stroke="#7A5C38" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">受訪者姓名</div><!-- ← 填入 -->
+      <div class="profile-name-my">နာမည်</div><!-- ← 填入緬甸文名字 -->
+      <p class="profile-bio">來台年份、身份、現居地等簡介，一兩句即可。例如：2003年來台，現居台北，職業舞者。</p><!-- ← 填入 -->
+    </div>
+  </div>
+
+  <!-- COVER IMAGE -->
+  <div class="cover-img">
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity=".2">
+      <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span style="font-size:11px;color:rgba(122,92,56,.35);letter-spacing:.1em">上傳訪談照片</span>
+  </div>
+  <p class="cover-caption">照片說明文字<!-- ← 填入 --></p>
+
+  <!-- ══ INTERVIEW ══ -->
+  <div class="interview">
+
+    <!-- ── Q1 ── -->
+    <div class="qa-pair">
+      <div class="q">
+        <div class="q-badge">Q</div>
+        <p class="q-text">你是什麼時候、為什麼來到台灣的？</p>
+        <!-- ← 改成你的問題 -->
+      </div>
+      <div class="a">
+        <div class="a-badge">A</div>
+        <p class="a-text">
+          受訪者的回答放在這裡。可以是一段，也可以是幾段。把他說的話如實記錄下來，保留口語感。
+          <!-- ← 填入受訪者回答 -->
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Q2 ── -->
+    <div class="qa-pair">
+      <div class="q">
+        <div class="q-badge">Q</div>
+        <p class="q-text">剛到台灣的時候，最難適應的是什麼？</p>
+        <!-- ← 改成你的問題 -->
+      </div>
+      <div class="a">
+        <div class="a-badge">A</div>
+        <p class="a-text">
+          這裡是回答。如果某段話特別精彩，可以用下面的 highlight 格式把它獨立出來。
+          <!-- ← 填入 -->
+        </p>
+      </div>
+      <!-- 特別精彩的句子可以用這個格式 -->
+      <div class="a-highlight">
+        「這裡放那句最打動人的話。」<!-- ← 換成受訪者說的金句 -->
+      </div>
+    </div>
+
+    <!-- 圖片插入示範 -->
+    <div>
+      <div class="inline-img">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" opacity=".2">
+          <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span style="font-size:11px;color:rgba(122,92,56,.35);letter-spacing:.1em">可在訪談中插入圖片</span>
+      </div>
+      <p class="inline-caption">圖片說明<!-- ← 填入 --></p>
+    </div>
+
+    <!-- 分隔線（話題轉換時用） -->
+    <div class="interview-break">
+      <div class="interview-break-line"></div>
+      <span class="interview-break-label">關於文化與音樂</span><!-- ← 改成你的話題 -->
+      <div class="interview-break-line"></div>
+    </div>
+
+    <!-- ── Q3 ── -->
+    <div class="qa-pair">
+      <div class="q">
+        <div class="q-badge">Q</div>
+        <p class="q-text">音樂或舞蹈在你的生命中扮演了什麼角色？</p>
+        <!-- ← 改成你的問題 -->
+      </div>
+      <div class="a">
+        <div class="a-badge">A</div>
+        <p class="a-text">
+          回答放這裡。
+          <!-- ← 填入 -->
+        </p>
+      </div>
+    </div>
+
+    <!-- ── Q4 ── -->
+    <div class="qa-pair">
+      <div class="q">
+        <div class="q-badge">Q</div>
+        <p class="q-text">你希望下一代還記得什麼？</p>
+        <!-- ← 改成你的問題 -->
+      </div>
+      <div class="a">
+        <div class="a-badge">A</div>
+        <p class="a-text">
+          回答放這裡。可以繼續新增更多 Q&amp;A，複製貼上 qa-pair 區塊就好。
+          <!-- ← 填入 -->
+        </p>
+      </div>
+    </div>
+
+    <!-- ← 繼續複製 qa-pair 區塊新增問答 -->
+
+  </div><!-- end .interview -->
+
+  <!-- PREV / NEXT -->
+  <nav class="article-nav">
+    <a href="story-01.html">
+      <div><span>← 上一篇</span>上一篇的標題<!-- ← 改 --></div>
+    </a>
+    <a href="story-03.html">
+      <div><span>下一篇 →</span>下一篇的標題<!-- ← 改 --></div>
+    </a>
+  </nav>
+
+</div>
+</body>
+</html>

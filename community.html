@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社群故事 · 珈斑樂舞團</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Noto+Sans+Myanmar:wght@400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5EDD8;
+  --cream2: #EDE0C4;
+  --c1: #C8582A;
+  --c1-light: #F5EDE8;
+  --c1-mid: #E8A080;
+  --text: #2A1A08;
+  --muted: #7A5C38;
+  --teal: #2E6860;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Noto Serif TC',serif;
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='46'%3E%3Cpath d='M0 23 Q17.5 6 35 23 Q52.5 40 70 23 Q87.5 6 105 23 Q122.5 40 140 23' fill='none' stroke='%238FBFB8' stroke-width='1.3' opacity='0.45'/%3E%3Cpath d='M0 34 Q17.5 17 35 34 Q52.5 51 70 34 Q87.5 17 105 34 Q122.5 51 140 34' fill='none' stroke='%238FBFB8' stroke-width='0.9' opacity='0.28'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:140px 46px;
+  color: var(--text);
+  min-height:100vh;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:14px 40px;
+  background:rgba(245,237,216,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,152,42,0.15);
+}
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-zh { font-size:14px; font-weight:700; color:#8a6010; display:block; line-height:1.25; }
+.nav-my { font-family:'Noto Sans Myanmar',sans-serif; font-size:11px; color:var(--teal); display:block; }
+.nav-back {
+  display:flex; align-items:center; gap:7px;
+  font-size:12px; color:var(--muted); text-decoration:none;
+  padding:6px 14px; border-radius:20px;
+  border:1px solid rgba(200,152,42,0.25);
+  transition:all .25s;
+}
+.nav-back:hover { background:rgba(200,152,42,0.1); color:#8a6010; }
+
+@media(max-width:600px){ nav{padding:12px 20px;} }
+
+/* ── HERO HEADER ── */
+.page-hero {
+  padding: 110px 40px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10px; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--c1); margin-bottom:16px;
+}
+.eyebrow-dot { width:8px; height:8px; border-radius:50%; background:var(--c1); }
+
+.page-title {
+  font-size:clamp(36px,6vw,72px); font-weight:700;
+  color:var(--text); line-height:1.05; margin-bottom:8px;
+}
+.page-title-my {
+  font-family:'Noto Sans Myanmar',sans-serif;
+  font-size:clamp(16px,2.2vw,24px); color:var(--teal); margin-bottom:20px;
+}
+.page-divider {
+  width:48px; height:2px; background:var(--c1);
+  border-radius:2px; margin-bottom:20px;
+}
+.page-lead {
+  font-size:15px; line-height:1.9; color:var(--muted);
+  max-width:560px; margin-bottom:48px;
+}
+
+/* ── COVER IMAGE SLOT ── */
+.cover-img {
+  width:100%; max-width:900px; margin:0 auto 80px;
+  padding:0 40px;
+}
+.cover-img-box {
+  width:100%; aspect-ratio:16/7;
+  background:rgba(255,255,255,0.5);
+  border:2px dashed rgba(200,152,42,0.3);
+  border-radius:16px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:10px;
+  position:relative; overflow:hidden;
+}
+/* 替換這裡：把 dashed box 換成你的圖片 */
+/* 用法：把下面的 <div class="cover-img-box"> 換成 <img src="你的圖片.jpg" style="width:100%;border-radius:16px"> */
+.cover-img-placeholder-icon { opacity:.25; }
+.cover-img-label {
+  font-size:12px; letter-spacing:.15em; color:var(--muted);
+  opacity:.5; text-transform:uppercase;
+}
+
+/* ── TIMELINE ── */
+.timeline-wrap {
+  max-width:900px; margin:0 auto;
+  padding:0 40px 100px;
+}
+
+.timeline-header {
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:52px;
+}
+.timeline-header-line {
+  flex:1; height:1px;
+  background:linear-gradient(to right, var(--c1-mid), transparent);
+  opacity:.4;
+}
+.timeline-header-label {
+  font-family:'Cinzel',serif;
+  font-size:11px; letter-spacing:.25em; text-transform:uppercase;
+  color:var(--c1); opacity:.7; white-space:nowrap;
+}
+
+/* vertical timeline */
+.timeline {
+  position:relative;
+  padding-left:56px;
+}
+
+/* vertical track line */
+.timeline::before {
+  content:'';
+  position:absolute;
+  left:16px; top:8px; bottom:8px;
+  width:2px;
+  background:linear-gradient(to bottom,
+    var(--c1) 0%,
+    var(--c1-mid) 60%,
+    rgba(200,152,42,.2) 100%
+  );
+  border-radius:2px;
+}
+
+/* each event */
+.t-event {
+  position:relative;
+  margin-bottom:48px;
+  text-decoration:none;
+  display:block;
+}
+
+.t-event:last-child { margin-bottom:0; }
+
+/* dot on the line */
+.t-dot {
+  position:absolute;
+  left:-48px; top:6px;
+  width:18px; height:18px;
+  border-radius:50%;
+  background:white;
+  border:2.5px solid var(--c1);
+  box-shadow:0 0 0 4px rgba(200,88,42,0.12);
+  transition:transform .25s, box-shadow .25s;
+  z-index:1;
+}
+
+.t-event:hover .t-dot {
+  transform:scale(1.35);
+  box-shadow:0 0 0 7px rgba(200,88,42,0.1);
+}
+
+/* connector line from dot to card */
+.t-connector {
+  position:absolute;
+  left:-30px; top:15px;
+  width:30px; height:1px;
+  background:var(--c1-mid);
+  opacity:.35;
+}
+
+/* the card */
+.t-card {
+  background:rgba(255,255,255,0.62);
+  border:1.5px solid rgba(255,255,255,.85);
+  border-radius:16px;
+  padding:22px 24px 20px;
+  backdrop-filter:blur(6px);
+  transition:transform .3s, box-shadow .3s;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:0 20px;
+  align-items:start;
+}
+
+.t-event:hover .t-card {
+  transform:translateX(6px);
+  box-shadow:0 8px 28px rgba(200,88,42,0.1);
+}
+
+/* year badge */
+.t-year {
+  font-family:'Cinzel',serif;
+  font-size:13px; font-weight:600;
+  color:var(--c1); letter-spacing:.08em;
+  padding-top:2px; white-space:nowrap;
+  min-width:52px;
+}
+
+/* content */
+.t-content { }
+.t-title {
+  font-size:17px; font-weight:700;
+  color:var(--text); margin-bottom:5px; line-height:1.3;
+}
+.t-desc {
+  font-size:13px; line-height:1.75;
+  color:var(--muted);
+}
+.t-tag {
+  display:inline-block; font-size:10px;
+  padding:3px 10px; border-radius:10px;
+  background:rgba(200,88,42,.1); color:var(--c1);
+  margin-top:9px; letter-spacing:.08em;
+}
+
+/* image thumbnail in card */
+.t-thumb {
+  width:72px; height:72px;
+  border-radius:10px;
+  background:rgba(245,237,216,.8);
+  border:1.5px dashed rgba(200,152,42,.3);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; overflow:hidden;
+}
+/* 替換：把 <div class="t-thumb"> 換成 <img src="你的縮圖.jpg" style="width:72px;height:72px;object-fit:cover;border-radius:10px"> */
+.t-thumb-placeholder { opacity:.25; }
+
+/* arrow CTA */
+.t-arrow {
+  font-size:18px; color:var(--c1-mid);
+  align-self:center; transition:transform .25s; margin-left:8px;
+}
+.t-event:hover .t-arrow { transform:translateX(4px); }
+
+/* ── ADD EVENT hint ── */
+.add-hint {
+  margin-top:40px;
+  display:flex; align-items:center; gap:12px;
+  color:rgba(122,92,56,.35);
+  font-size:12px; letter-spacing:.1em;
+}
+.add-hint-line { flex:1; height:1px; background:rgba(200,152,42,.15); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .page-hero, .cover-img, .timeline-wrap { padding-left:20px; padding-right:20px; }
+  .t-card { grid-template-columns:1fr; gap:8px; }
+  .t-thumb { display:none; }
+  .t-year { font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="#C8982A" stroke-width="2"/>
+      <circle cx="50" cy="50" r="36" stroke="#C8982A" stroke-width=".8" stroke-dasharray="4 3"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(45 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(90 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(135 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(225 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(270 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(315 50 50)"/>
+      <text x="50" y="47" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="10" font-weight="700" fill="#A87820">珈斑</text>
+      <text x="50" y="60" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="7.5" fill="#A87820">樂舞團</text>
+    </svg>
+    <div><span class="nav-zh">珈斑樂舞團</span><span class="nav-my">ကြပ်ပန်း</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← 返回首頁</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-eyebrow"><span class="eyebrow-dot"></span>Station 01 · Community</div>
+  <h1 class="page-title">社群故事</h1>
+  <div class="page-title-my">အသိုင်းအဝိုင်း ဇာတ်လမ်းများ</div>
+  <div class="page-divider"></div>
+  <p class="page-lead">
+    在台緬甸人的遷徙歷程，不只是地理上的移動，更是語言、信仰、音樂與記憶的跨海旅行。這裡記錄的，是那些選擇在異鄉保存自己文化的人們的故事。
+  </p>
+</div>
+
+<!-- COVER IMAGE SLOT -->
+<div class="cover-img">
+  <div class="cover-img-box">
+    <!-- 替換成你的圖片：
+    <img src="你的圖片路徑.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:14px">
+    -->
+    <svg class="cover-img-placeholder-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="cover-img-label">上傳封面圖片</span>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-wrap">
+
+  <div class="timeline-header">
+    <span class="timeline-header-label">歷史年表 · Timeline</span>
+    <div class="timeline-header-line"></div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- ── 事件 1 ── -->
+    <a href="story-01.html" class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-connector"></div>
+      <div class="t-card">
+        <div class="t-year">1988</div>
+        <div class="t-content">
+          <div class="t-title">第一波移民潮</div>
+          <p class="t-desc">緬甸軍政府鎮壓民主運動後，第一批緬甸人以留學、政治庇護等方式陸續來到台灣。</p>
+          <span class="t-tag">移民歷史</span>
+        </div>
+        <div class="t-thumb">
+          <!-- 替換成縮圖：<img src="photo-1988.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+          <svg class="t-thumb-placeholder" width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="t-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- ── 事件 2 ── -->
+    <a href="story-02.html" class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-connector"></div>
+      <div class="t-card">
+        <div class="t-year">1990年代</div>
+        <div class="t-content">
+          <div class="t-title">緬甸學生在台聚集</div>
+          <p class="t-desc">台灣各大學開始出現緬甸留學生社群，北中南逐漸形成非正式的互助網絡。</p>
+          <span class="t-tag">社群形成</span>
+        </div>
+        <div class="t-thumb">
+          <svg class="t-thumb-placeholder" width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="t-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- ── 事件 3 ── -->
+    <a href="story-03.html" class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-connector"></div>
+      <div class="t-card">
+        <div class="t-year">2000年代</div>
+        <div class="t-content">
+          <div class="t-title">文化保存的意識覺醒</div>
+          <p class="t-desc">第二代移民在台灣出生，社群開始意識到傳統語言、音樂、舞蹈面臨消失的危機，組織文化活動。</p>
+          <span class="t-tag">文化保存</span>
+        </div>
+        <div class="t-thumb">
+          <svg class="t-thumb-placeholder" width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="t-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- ── 事件 4 ── -->
+    <a href="story-04.html" class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-connector"></div>
+      <div class="t-card">
+        <div class="t-year">2021</div>
+        <div class="t-content">
+          <div class="t-title">緬甸政變後的新移民潮</div>
+          <p class="t-desc">二月政變後，大量緬甸人出走，台灣社群人數急速增加，帶來新的故事與更迫切的文化保存需求。</p>
+          <span class="t-tag">政治移民</span>
+        </div>
+        <div class="t-thumb">
+          <svg class="t-thumb-placeholder" width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="t-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- ── 事件 5 ── -->
+    <a href="story-05.html" class="t-event">
+      <div class="t-dot"></div>
+      <div class="t-connector"></div>
+      <div class="t-card">
+        <div class="t-year">現在</div>
+        <div class="t-content">
+          <div class="t-title">珈斑樂舞團成立</div>
+          <p class="t-desc">在台灣的緬甸樂師與舞者聚集，以表演和教學延續傳統，也讓台灣社會看見這份珍貴的文化。</p>
+          <span class="t-tag">珈斑</span>
+        </div>
+        <div class="t-thumb">
+          <svg class="t-thumb-placeholder" width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+            <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="t-arrow">→</div>
+      </div>
+    </a>
+
+    <div class="add-hint">
+      <div class="add-hint-line"></div>
+      <span>可繼續新增事件</span>
+      <div class="add-hint-line"></div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
