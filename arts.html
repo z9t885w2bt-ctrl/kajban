@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>樂舞藝術 · 珈斑樂舞團</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Noto+Sans+Myanmar:wght@400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5EDD8; --c4:#1A8A5A; --c4-pale:#EAF6F0;
+  --text:#2A1A08; --muted:#7A5C38; --teal:#2E6860;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Noto Serif TC',serif;
+  background-color:var(--cream);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='46'%3E%3Cpath d='M0 23 Q17.5 6 35 23 Q52.5 40 70 23 Q87.5 6 105 23 Q122.5 40 140 23' fill='none' stroke='%238FBFB8' stroke-width='1.3' opacity='0.45'/%3E%3Cpath d='M0 34 Q17.5 17 35 34 Q52.5 51 70 34 Q87.5 17 105 34 Q122.5 51 140 34' fill='none' stroke='%238FBFB8' stroke-width='0.9' opacity='0.28'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:140px 46px;
+  color:var(--text);min-height:100vh;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 40px;
+  background:rgba(245,237,216,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,152,42,0.15);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-zh{font-size:14px;font-weight:700;color:#8a6010;display:block;line-height:1.25;}
+.nav-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:11px;color:var(--teal);display:block;}
+.nav-back{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--muted);text-decoration:none;
+  padding:6px 14px;border-radius:20px;
+  border:1px solid rgba(200,152,42,0.25);transition:all .25s;
+}
+.nav-back:hover{background:rgba(200,152,42,.1);color:#8a6010;}
+@media(max-width:600px){nav{padding:12px 20px;}}
+
+.page-hero{padding:110px 40px 52px;max-width:960px;margin:0 auto;}
+.page-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--c4);margin-bottom:16px;
+}
+.eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--c4);}
+.page-title{font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--text);line-height:1.05;margin-bottom:8px;}
+.page-title-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:clamp(15px,2.2vw,24px);color:var(--teal);margin-bottom:18px;}
+.page-divider{width:48px;height:2px;background:var(--c4);border-radius:2px;margin-bottom:18px;}
+.page-lead{font-size:15px;line-height:1.9;color:var(--muted);max-width:560px;}
+
+.cover-img{width:100%;max-width:960px;margin:40px auto 0;padding:0 40px;}
+.cover-img-box{
+  width:100%;aspect-ratio:16/6;
+  background:rgba(255,255,255,0.5);
+  border:2px dashed rgba(26,138,90,0.22);border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.cover-img-label{font-size:12px;letter-spacing:.15em;color:var(--muted);opacity:.4;text-transform:uppercase;}
+
+.arts-section{max-width:960px;margin:0 auto;padding:64px 40px 100px;}
+
+/* chapter headers */
+.chapter-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:28px;margin-top:52px;
+}
+.chapter-head:first-child{margin-top:0;}
+.chapter-head-line{flex:1;height:1px;background:linear-gradient(to right,rgba(26,138,90,.35),transparent);}
+.chapter-head-text{
+  font-family:'Cinzel',serif;font-size:12px;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--c4);white-space:nowrap;
+}
+
+/* arts grid - 3 col for dance, 4 col for instruments */
+.arts-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.arts-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+
+/* card */
+.arts-card{
+  background:rgba(255,255,255,0.62);
+  border:1.5px solid rgba(255,255,255,.88);
+  border-radius:20px;overflow:hidden;
+  text-decoration:none;
+  display:flex;flex-direction:column;
+  transition:transform .3s,box-shadow .3s;
+  backdrop-filter:blur(6px);cursor:pointer;
+}
+.arts-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(26,138,90,0.12);}
+.arts-card::before{content:'';display:block;height:3px;width:100%;}
+.ac-court::before   {background:linear-gradient(to right,#C8982A,#E8C060);}
+.ac-puppet::before  {background:linear-gradient(to right,#7A3A8A,#C090D0);}
+.ac-nat::before     {background:linear-gradient(to right,#4A8A82,#90C0BC);}
+.ac-drum::before    {background:linear-gradient(to right,#8B4513,#C49A6A);}
+.ac-harp::before    {background:linear-gradient(to right,#C8982A,#E8C080);}
+.ac-gong::before    {background:linear-gradient(to right,#4A8A82,#80C0BC);}
+.ac-xylo::before    {background:linear-gradient(to right,#2A8A6A,#70C090);}
+
+.card-illus{
+  width:100%;aspect-ratio:1/1;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+.ac-court  .card-illus{background:linear-gradient(to bottom,#FDF8E8,#F5EDCC);}
+.ac-puppet .card-illus{background:linear-gradient(to bottom,#F5F0FC,#EAE0F4);}
+.ac-nat    .card-illus{background:linear-gradient(to bottom,#EAF4F2,#D8EEEA);}
+.ac-drum   .card-illus{background:linear-gradient(to bottom,#FDF4EC,#F5E4CC);}
+.ac-harp   .card-illus{background:linear-gradient(to bottom,#FDF8E8,#F5EDCC);}
+.ac-gong   .card-illus{background:linear-gradient(to bottom,#EAF4F2,#D8EEEA);}
+.ac-xylo   .card-illus{background:linear-gradient(to bottom,#EAF6F0,#D0EEE0);}
+
+.card-illus svg{width:78%;max-width:140px;}
+
+.card-photo-slot{
+  width:100%;aspect-ratio:4/3;
+  background:rgba(245,237,216,.7);
+  border-top:1.5px dashed rgba(26,138,90,.15);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.photo-label{font-size:10px;letter-spacing:.08em;color:var(--muted);opacity:.32;text-transform:uppercase;}
+
+.card-body{padding:16px 16px 18px;}
+.card-name-zh{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.card-name-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:11px;color:var(--teal);margin-bottom:7px;}
+.card-desc{font-size:12px;line-height:1.78;color:var(--muted);}
+
+/* instrument cards are a bit more compact */
+.arts-grid-4 .card-illus{aspect-ratio:1/0.9;}
+.arts-grid-4 .card-body{padding:13px 14px 16px;}
+.arts-grid-4 .card-name-zh{font-size:14px;}
+
+@media(max-width:780px){
+  .arts-grid-3{grid-template-columns:1fr 1fr;}
+  .arts-grid-4{grid-template-columns:1fr 1fr;}
+  .page-hero,.cover-img,.arts-section{padding-left:20px;padding-right:20px;}
+}
+@media(max-width:480px){
+  .arts-grid-3,.arts-grid-4{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="#C8982A" stroke-width="2"/>
+      <circle cx="50" cy="50" r="36" stroke="#C8982A" stroke-width=".8" stroke-dasharray="4 3"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(45 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(90 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(135 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(225 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(270 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(315 50 50)"/>
+      <text x="50" y="47" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="10" font-weight="700" fill="#A87820">珈斑</text>
+      <text x="50" y="60" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="7.5" fill="#A87820">樂舞團</text>
+    </svg>
+    <div><span class="nav-zh">珈斑樂舞團</span><span class="nav-my">ကြပ်ပန်း</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← 返回首頁</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-eyebrow"><span class="eyebrow-dot"></span>Station 04 · Arts</div>
+  <h1 class="page-title">樂舞<br>藝術</h1>
+  <div class="page-title-my">ဂီတ နှင့် ကမ်ပာ အနုပညာ</div>
+  <div class="page-divider"></div>
+  <p class="page-lead">從族群服飾、節慶儀式中生長出來的舞蹈與音樂。這是文化的花朵——每個動作、每個音符，都承載著一個族群對世界的感受與詮釋。這也是珈斑存在的意義。</p>
+</div>
+
+<div class="cover-img">
+  <div class="cover-img-box">
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity=".18">
+      <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-img-label">上傳封面圖片</span>
+  </div>
+</div>
+
+<div class="arts-section">
+
+  <!-- ── 舞蹈 ── -->
+  <div class="chapter-head">
+    <span class="chapter-head-text">傳統舞蹈 · Traditional Dance</span>
+    <div class="chapter-head-line"></div>
+  </div>
+
+  <div class="arts-grid-3">
+
+    <!-- 宮廷古典舞 -->
+    <a href="dance-court.html" class="arts-card ac-court">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 160" fill="none">
+          <ellipse cx="60" cy="28" rx="18" ry="20" fill="#E8C49A"/>
+          <polygon points="60,4 54,20 66,20" fill="#1A0A0A"/>
+          <polygon points="60,7 52,22 68,22" fill="#2A1A0A"/>
+          <rect x="53" y="22" width="14" height="6" fill="#C8982A" opacity=".8"/>
+          <ellipse cx="60" cy="20" rx="13" ry="8" fill="#2A1A0A"/>
+          <path d="M40 50 Q60 43 80 50 L86 100 Q60 108 34 100Z" fill="#C8982A" opacity=".75"/>
+          <path d="M40 56 Q60 49 80 56" stroke="#E8C82A" stroke-width="2" fill="none"/>
+          <rect x="40" y="76" width="40" height="6" rx="3" fill="#C8982A" opacity=".8"/>
+          <path d="M40 58 Q20 62 8 84 Q18 80 34 78Z" fill="#C8982A" opacity=".8"/>
+          <path d="M80 58 Q100 62 112 84 Q102 80 86 78Z" fill="#C8982A" opacity=".8"/>
+          <path d="M34 100 Q60 108 86 100 L90 148 Q60 156 30 148Z" fill="#B07820" opacity=".8"/>
+          <line x1="36" y1="118" x2="88" y2="118" stroke="rgba(255,255,255,.3)" stroke-width="1.2"/>
+          <line x1="35" y1="134" x2="89" y2="134" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">宮廷古典舞</div>
+        <div class="card-name-my">နန်းတွင်း ကမ်ပာ</div>
+        <p class="card-desc">源自曼德勒王朝宮廷，精緻手勢與優雅步伐，金色服飾象徵皇室氣度。</p>
+      </div>
+    </a>
+
+    <!-- 木偶戲舞 -->
+    <a href="dance-puppet.html" class="arts-card ac-puppet">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 160" fill="none">
+          <!-- control bar -->
+          <rect x="20" y="14" width="80" height="8" rx="4" fill="#8B4513" opacity=".7"/>
+          <!-- strings -->
+          <line x1="35" y1="22" x2="35" y2="54" stroke="#8B4513" stroke-width="1" stroke-dasharray="3 2"/>
+          <line x1="60" y1="22" x2="60" y2="50" stroke="#8B4513" stroke-width="1" stroke-dasharray="3 2"/>
+          <line x1="85" y1="22" x2="85" y2="54" stroke="#8B4513" stroke-width="1" stroke-dasharray="3 2"/>
+          <!-- puppet head -->
+          <ellipse cx="60" cy="62" rx="16" ry="16" fill="#E8C49A"/>
+          <ellipse cx="60" cy="50" rx="14" ry="10" fill="#2A1A0A"/>
+          <!-- puppet body -->
+          <path d="M42 78 Q60 72 78 78 L82 118 Q60 124 38 118Z" fill="#7A3A8A"/>
+          <!-- puppet arms on strings -->
+          <line x1="35" y1="54" x2="30" y2="90" stroke="#E8C49A" stroke-width="8" stroke-linecap="round"/>
+          <line x1="85" y1="54" x2="90" y2="88" stroke="#E8C49A" stroke-width="8" stroke-linecap="round"/>
+          <!-- puppet legs strings -->
+          <line x1="60" y1="50" x2="48" y2="130" stroke="#8B4513" stroke-width="1" stroke-dasharray="3 2"/>
+          <line x1="60" y1="50" x2="72" y2="130" stroke="#8B4513" stroke-width="1" stroke-dasharray="3 2"/>
+          <ellipse cx="48" cy="136" rx="8" ry="10" fill="#7A3A8A" transform="rotate(-8 48 136)"/>
+          <ellipse cx="72" cy="136" rx="8" ry="10" fill="#7A3A8A" transform="rotate(8 72 136)"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">木偶戲舞</div>
+        <div class="card-name-my">ယိုးမှားကဆော</div>
+        <p class="card-desc">操偶師以精湛技藝讓木偶栩栩如生，演繹神話故事，常於節慶中登台。</p>
+      </div>
+    </a>
+
+    <!-- 納特靈舞 -->
+    <a href="dance-nat.html" class="arts-card ac-nat">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 160" fill="none">
+          <ellipse cx="60" cy="28" rx="16" ry="18" fill="#E8C49A"/>
+          <ellipse cx="60" cy="17" rx="14" ry="10" fill="#2A1A0A"/>
+          <!-- spirit crown -->
+          <path d="M60 5 Q54 12 48 10 Q54 18 60 12 Q66 18 72 10 Q66 12 60 5Z" fill="#4A8A82" opacity=".9"/>
+          <ellipse cx="60" cy="12" rx="12" ry="5" fill="#2E6860" opacity=".7"/>
+          <!-- flowing spirit robes -->
+          <path d="M38 48 Q60 41 82 48 L96 120 Q60 132 24 120Z" fill="#4A8A82"/>
+          <path d="M38 48 Q60 41 82 48 L94 114 Q60 128 26 114Z" fill="#6AADA4" opacity=".6"/>
+          <!-- wide spirit sleeves -->
+          <path d="M38 58 Q14 62 2 90 Q14 84 32 82Z" fill="#4A8A82"/>
+          <path d="M82 58 Q106 62 118 90 Q106 84 88 82Z" fill="#4A8A82"/>
+          <!-- spirit swirl effects -->
+          <path d="M16 50 Q10 40 16 32" stroke="#6AADA4" stroke-width="2" fill="none" opacity=".45" stroke-linecap="round"/>
+          <path d="M104 50 Q110 40 104 32" stroke="#6AADA4" stroke-width="2" fill="none" opacity=".45" stroke-linecap="round"/>
+          <!-- gold belt -->
+          <rect x="38" y="84" width="44" height="7" rx="3.5" fill="#C8982A" opacity=".75"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">納特靈舞</div>
+        <div class="card-name-my">နတ်ကမ်ပာ</div>
+        <p class="card-desc">直接源自納特祭儀式，靈媒舞者進入附身狀態，服飾對應所祭之神靈。</p>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── 樂器 ── -->
+  <div class="chapter-head">
+    <span class="chapter-head-text">傳統樂器 · Musical Instruments</span>
+    <div class="chapter-head-line"></div>
+  </div>
+
+  <div class="arts-grid-4">
+
+    <!-- 帕旺鼓圈 -->
+    <a href="instrument-patwaing.html" class="arts-card ac-drum">
+      <div class="card-illus">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="40" stroke="#8B4513" stroke-width="2.5" fill="none"/>
+          <circle cx="50" cy="50" r="32" stroke="#C8982A" stroke-width="1" fill="none" opacity=".5"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(36 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(72 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(108 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(144 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(180 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(216 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(252 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(288 50 50)"/>
+          <ellipse cx="50" cy="12" rx="6" ry="9" fill="#C49A6A" stroke="#8B4513" stroke-width="1.2" transform="rotate(324 50 50)"/>
+          <!-- seated player -->
+          <circle cx="50" cy="43" r="8" fill="#E8C49A"/>
+          <ellipse cx="50" cy="36" rx="7" ry="5" fill="#2A1A0A"/>
+          <path d="M40 52 Q40 46 50 46 Q60 46 60 52 L62 62 Q50 66 38 62Z" fill="#C8982A" opacity=".7"/>
+          <!-- mallet -->
+          <line x1="60" y1="50" x2="70" y2="40" stroke="#6B3A1A" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="70" cy="40" r="3.5" fill="#6B3A1A"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">帕旺鼓圈</div>
+        <div class="card-name-my">ပတ်ဝိုင်း</div>
+        <p class="card-desc">21個調音鼓排成圓圈，演奏者坐於中央，是緬甸宮廷樂的靈魂。</p>
+      </div>
+    </a>
+
+    <!-- 桑豎琴 -->
+    <a href="instrument-saung.html" class="arts-card ac-harp">
+      <div class="card-illus">
+        <svg viewBox="0 0 100 100" fill="none">
+          <!-- harp body -->
+          <path d="M18 88 Q18 32 60 14" stroke="#8B4513" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M18 88 Q42 82 60 14" stroke="#C49A6A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- strings -->
+          <line x1="20" y1="78" x2="42" y2="30" stroke="#C8982A" stroke-width="1.2" opacity=".85"/>
+          <line x1="20" y1="68" x2="46" y2="24" stroke="#C8982A" stroke-width="1.2" opacity=".8"/>
+          <line x1="21" y1="58" x2="50" y2="20" stroke="#C8982A" stroke-width="1" opacity=".75"/>
+          <line x1="22" y1="48" x2="54" y2="17" stroke="#C8982A" stroke-width="1" opacity=".7"/>
+          <!-- resonating body -->
+          <path d="M14 80 Q10 92 20 96 Q30 100 36 92 L20 88Z" fill="#8B4513" opacity=".8"/>
+          <path d="M20 96 Q30 100 36 92 Q40 86 36 82 Q26 86 20 96Z" fill="#C8982A" opacity=".6"/>
+          <!-- gold decoration on body -->
+          <ellipse cx="28" cy="90" rx="6" ry="4" fill="#C8982A" opacity=".4" transform="rotate(-20 28 90)"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">桑豎琴</div>
+        <div class="card-name-my">စောင်း</div>
+        <p class="card-desc">緬甸最古老的樂器，弧形琴身飾以漆金，音色溫柔如古老傳說。</p>
+      </div>
+    </a>
+
+    <!-- 鑼圈 -->
+    <a href="instrument-gong.html" class="arts-card ac-gong">
+      <div class="card-illus">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="38" stroke="#8B4513" stroke-width="2" fill="none"/>
+          <!-- gongs around ring -->
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(51.4 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(51.4 50 50)"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(102.8 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(102.8 50 50)"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(154.2 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(154.2 50 50)"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(205.6 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(205.6 50 50)"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(257 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(257 50 50)"/>
+          <circle cx="50" cy="14" r="7" fill="#C8982A" opacity=".85" transform="rotate(308.4 50 50)"/>
+          <circle cx="50" cy="14" r="3" fill="#E3B84A" transform="rotate(308.4 50 50)"/>
+          <circle cx="50" cy="50" r="6" fill="#C8982A" opacity=".35"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">鑼圈</div>
+        <div class="card-name-my">ကြေးဝိုင်း</div>
+        <p class="card-desc">銅製鑼具排列成圓圈，音色清亮，與帕旺鼓圈合奏為宮廷樂核心。</p>
+      </div>
+    </a>
+
+    <!-- 木排琴 -->
+    <a href="instrument-xylo.html" class="arts-card ac-xylo">
+      <div class="card-illus">
+        <svg viewBox="0 0 100 100" fill="none">
+          <!-- frame -->
+          <rect x="8" y="42" width="84" height="14" rx="3" fill="#8B4513" opacity=".6"/>
+          <!-- keys -->
+          <rect x="12" y="28" width="13" height="42" rx="2.5" fill="#C49A6A" stroke="#8B4513" stroke-width="1"/>
+          <rect x="28" y="24" width="13" height="42" rx="2.5" fill="#C8982A" stroke="#8B4513" stroke-width="1"/>
+          <rect x="44" y="20" width="13" height="42" rx="2.5" fill="#C49A6A" stroke="#8B4513" stroke-width="1"/>
+          <rect x="60" y="24" width="13" height="42" rx="2.5" fill="#C8982A" stroke="#8B4513" stroke-width="1"/>
+          <rect x="76" y="28" width="13" height="42" rx="2.5" fill="#C49A6A" stroke="#8B4513" stroke-width="1"/>
+          <!-- mallets -->
+          <line x1="22" y1="10" x2="30" y2="26" stroke="#6B3A1A" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="22" cy="10" r="5" fill="#6B3A1A"/>
+          <line x1="74" y1="10" x2="66" y2="26" stroke="#6B3A1A" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="74" cy="10" r="5" fill="#6B3A1A"/>
+        </svg>
+      </div>
+      <div class="card-photo-slot">
+        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" opacity=".18"><rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/><circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/><path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <span class="photo-label">上傳照片</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name-zh">木排琴</div>
+        <div class="card-name-my">ပတ်တလာ</div>
+        <p class="card-desc">竹木製排琴，音色溫潤，常見於民間節慶與街頭表演。</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>

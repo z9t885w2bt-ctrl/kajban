@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>節慶與儀式 · 珈斑樂舞團</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&family=Noto+Sans+Myanmar:wght@400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5EDD8; --c3:#B07800; --c3-pale:#FDF8EC;
+  --text:#2A1A08; --muted:#7A5C38; --teal:#2E6860;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Noto Serif TC',serif;
+  background-color:var(--cream);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='46'%3E%3Cpath d='M0 23 Q17.5 6 35 23 Q52.5 40 70 23 Q87.5 6 105 23 Q122.5 40 140 23' fill='none' stroke='%238FBFB8' stroke-width='1.3' opacity='0.45'/%3E%3Cpath d='M0 34 Q17.5 17 35 34 Q52.5 51 70 34 Q87.5 17 105 34 Q122.5 51 140 34' fill='none' stroke='%238FBFB8' stroke-width='0.9' opacity='0.28'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:140px 46px;
+  color:var(--text);min-height:100vh;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 40px;
+  background:rgba(245,237,216,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(200,152,42,0.15);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-zh{font-size:14px;font-weight:700;color:#8a6010;display:block;line-height:1.25;}
+.nav-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:11px;color:var(--teal);display:block;}
+.nav-back{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--muted);text-decoration:none;
+  padding:6px 14px;border-radius:20px;
+  border:1px solid rgba(200,152,42,0.25);transition:all .25s;
+}
+.nav-back:hover{background:rgba(200,152,42,.1);color:#8a6010;}
+@media(max-width:600px){nav{padding:12px 20px;}}
+
+/* HERO */
+.page-hero{padding:110px 40px 52px;max-width:960px;margin:0 auto;}
+.page-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--c3);margin-bottom:16px;
+}
+.eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--c3);}
+.page-title{font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--text);line-height:1.05;margin-bottom:8px;}
+.page-title-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:clamp(15px,2.2vw,24px);color:var(--teal);margin-bottom:18px;}
+.page-divider{width:48px;height:2px;background:var(--c3);border-radius:2px;margin-bottom:18px;}
+.page-lead{font-size:15px;line-height:1.9;color:var(--muted);max-width:560px;}
+
+/* COVER */
+.cover-img{width:100%;max-width:960px;margin:40px auto 0;padding:0 40px;}
+.cover-img-box{
+  width:100%;aspect-ratio:16/6;
+  background:rgba(255,255,255,0.5);
+  border:2px dashed rgba(176,120,0,0.22);border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.cover-img-label{font-size:12px;letter-spacing:.15em;color:var(--muted);opacity:.4;text-transform:uppercase;}
+
+/* FESTIVAL SECTION */
+.festival-section{max-width:960px;margin:0 auto;padding:64px 40px 100px;}
+.section-label{display:flex;align-items:center;gap:14px;margin-bottom:48px;}
+.section-label-line{flex:1;height:1px;background:linear-gradient(to right,rgba(176,120,0,.4),transparent);}
+.section-label-text{
+  font-family:'Cinzel',serif;font-size:11px;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--c3);opacity:.7;white-space:nowrap;
+}
+
+/* FESTIVAL CARDS — bigger, landscape feel */
+.festival-list{display:flex;flex-direction:column;gap:24px;}
+
+.festival-card{
+  background:rgba(255,255,255,0.62);
+  border:1.5px solid rgba(255,255,255,.88);
+  border-radius:20px;overflow:hidden;
+  text-decoration:none;
+  display:grid;
+  grid-template-columns:200px 1fr;
+  transition:transform .3s,box-shadow .3s;
+  backdrop-filter:blur(6px);
+}
+.festival-card:hover{
+  transform:translateX(6px);
+  box-shadow:0 12px 36px rgba(176,120,0,0.13);
+}
+
+/* coloured left strip via illus bg */
+.card-illus{
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 16px;position:relative;overflow:hidden;
+}
+.fc-water  .card-illus{background:linear-gradient(135deg,#EAF4FC,#C8E8F8);}
+.fc-light  .card-illus{background:linear-gradient(135deg,#FDF8E8,#F8E8B0);}
+.fc-nat    .card-illus{background:linear-gradient(135deg,#F4EAF8,#E0C8F0);}
+.fc-kajban .card-illus{background:linear-gradient(135deg,#EAF6F0,#C8EAD8);}
+
+.card-illus svg{width:110px;height:110px;}
+
+/* top colour bar on card */
+.festival-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:3px;
+}
+.fc-water::before  {background:linear-gradient(to right,#4A9ACA,#90C8E8);}
+.fc-light::before  {background:linear-gradient(to right,#C8980A,#E8C840);}
+.fc-nat::before    {background:linear-gradient(to right,#7A3AAA,#C090E0);}
+.fc-kajban::before {background:linear-gradient(to right,#1A8A5A,#60C090);}
+
+.card-body{padding:28px 28px 28px 20px;display:flex;flex-direction:column;justify-content:center;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:12px;}
+.card-name-zh{font-size:22px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.card-name-my{font-family:'Noto Sans Myanmar',sans-serif;font-size:13px;color:var(--teal);margin-bottom:8px;}
+.card-when{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--c3);
+  background:rgba(176,120,0,.1);padding:4px 12px;border-radius:10px;
+  white-space:nowrap;flex-shrink:0;margin-top:4px;
+}
+.card-desc{font-size:14px;line-height:1.85;color:var(--muted);}
+.card-tag{
+  display:inline-block;font-size:10px;padding:4px 12px;border-radius:10px;
+  margin-top:14px;letter-spacing:.08em;font-weight:600;
+  align-self:flex-start;
+}
+
+/* photo slot below body — full width inside card */
+.card-photo-row{
+  grid-column:1/-1;
+  height:180px;
+  background:rgba(245,237,216,.7);
+  border-top:1.5px dashed rgba(176,120,0,.18);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.photo-label{font-size:10px;letter-spacing:.1em;color:var(--muted);opacity:.35;text-transform:uppercase;}
+
+@media(max-width:680px){
+  .festival-card{grid-template-columns:1fr;}
+  .card-illus{padding:20px;height:140px;}
+  .card-illus svg{width:80px;height:80px;}
+  .card-photo-row{height:130px;}
+  .page-hero,.cover-img,.festival-section{padding-left:20px;padding-right:20px;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="#C8982A" stroke-width="2"/>
+      <circle cx="50" cy="50" r="36" stroke="#C8982A" stroke-width=".8" stroke-dasharray="4 3"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(0 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(45 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(90 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(135 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(225 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(270 50 50)"/>
+      <ellipse cx="50" cy="18" rx="5" ry="8" fill="#C8982A" opacity=".55" transform="rotate(315 50 50)"/>
+      <text x="50" y="47" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="10" font-weight="700" fill="#A87820">珈斑</text>
+      <text x="50" y="60" text-anchor="middle" font-family="Noto Serif TC,serif" font-size="7.5" fill="#A87820">樂舞團</text>
+    </svg>
+    <div><span class="nav-zh">珈斑樂舞團</span><span class="nav-my">ကြပ်ပန်း</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← 返回首頁</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-eyebrow"><span class="eyebrow-dot"></span>Station 03 · Festivals</div>
+  <h1 class="page-title">節慶與<br>儀式</h1>
+  <div class="page-title-my">ပွဲတော်များ နှင့် ဓလေ့ထုံးတမ်း</div>
+  <div class="page-divider"></div>
+  <p class="page-lead">這些節慶不只是慶典——它們是族群認同得以延續的文化容器，也是舞蹈與音樂得以存在的生命場域。每年的循環，連結著在台緬甸社群與故鄉的根脈。</p>
+</div>
+
+<div class="cover-img">
+  <div class="cover-img-box">
+    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" opacity=".18">
+      <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+      <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="cover-img-label">上傳封面圖片</span>
+  </div>
+</div>
+
+<div class="festival-section">
+  <div class="section-label">
+    <span class="section-label-text">四大節慶 · Four Festivals</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="festival-list">
+
+    <!-- 潑水節 -->
+    <a href="festival-thingyan.html" class="festival-card fc-water">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 120" fill="none">
+          <!-- water drops splashing -->
+          <ellipse cx="60" cy="88" rx="38" ry="12" fill="#4A9ACA" opacity=".2"/>
+          <!-- bucket pouring -->
+          <rect x="38" y="30" width="26" height="20" rx="4" fill="#90C8E8" stroke="#4A9ACA" stroke-width="1.5"/>
+          <line x1="38" y1="30" x2="34" y2="24" stroke="#4A9ACA" stroke-width="2" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="68" y2="24" stroke="#4A9ACA" stroke-width="2" stroke-linecap="round"/>
+          <!-- water stream -->
+          <path d="M46 50 Q44 62 48 72 Q52 82 50 92" stroke="#4A9ACA" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+          <path d="M56 50 Q58 64 54 76 Q50 86 54 94" stroke="#90C8E8" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+          <!-- drops -->
+          <circle cx="36" cy="66" r="4" fill="#4A9ACA" opacity=".6"/>
+          <circle cx="80" cy="58" r="3" fill="#90C8E8" opacity=".5"/>
+          <circle cx="74" cy="78" r="5" fill="#4A9ACA" opacity=".4"/>
+          <circle cx="28" cy="80" r="3.5" fill="#90C8E8" opacity=".5"/>
+          <circle cx="88" cy="72" r="4" fill="#4A9ACA" opacity=".45"/>
+          <!-- person silhouette -->
+          <ellipse cx="60" cy="22" rx="9" ry="10" fill="#E8C49A"/>
+          <ellipse cx="60" cy="14" rx="8" ry="6" fill="#3A2010"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div>
+            <div class="card-name-zh">潑水節 · Thingyan</div>
+            <div class="card-name-my">သင်္ကြန်ပွဲ</div>
+          </div>
+          <span class="card-when">每年 4 月</span>
+        </div>
+        <p class="card-desc">緬甸新年慶典，連續四天以水象徵洗去舊年業障與罪孽。節慶中大量傳統歌謠與舞蹈在街頭上演，是全年最熱鬧的文化盛事。在台灣，社群每年聚集重現這個儀式，讓異鄉也有了過年的氣氛。</p>
+        <span class="card-tag" style="background:rgba(74,154,202,.12);color:#2A7AAA">新年 · 淨化</span>
+      </div>
+      <div class="card-photo-row">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" opacity=".18">
+          <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="photo-label">上傳節慶照片</span>
+      </div>
+    </a>
+
+    <!-- 光明節 -->
+    <a href="festival-thadingyut.html" class="festival-card fc-light">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 120" fill="none">
+          <!-- candles / lanterns -->
+          <!-- centre candle -->
+          <rect x="54" y="52" width="12" height="40" rx="3" fill="#F8E8B0" stroke="#C8980A" stroke-width="1.2"/>
+          <ellipse cx="60" cy="52" rx="6" ry="3" fill="#C8980A" opacity=".8"/>
+          <!-- flame -->
+          <path d="M60 48 Q56 42 58 36 Q60 30 62 36 Q64 42 60 48Z" fill="#FF9020" opacity=".9"/>
+          <path d="M60 46 Q58 42 59 38 Q60 34 61 38 Q62 42 60 46Z" fill="#FFD040"/>
+          <!-- glow -->
+          <ellipse cx="60" cy="44" rx="14" ry="14" fill="#FFE060" opacity=".15"/>
+          <!-- left candle -->
+          <rect x="32" y="64" width="10" height="28" rx="2.5" fill="#F8E8B0" stroke="#C8980A" stroke-width="1"/>
+          <path d="M37 60 Q34 55 36 50 Q37 46 39 50 Q41 55 37 60Z" fill="#FF9020" opacity=".8"/>
+          <!-- right candle -->
+          <rect x="78" y="64" width="10" height="28" rx="2.5" fill="#F8E8B0" stroke="#C8980A" stroke-width="1"/>
+          <path d="M83 60 Q80 55 82 50 Q83 46 85 50 Q87 55 83 60Z" fill="#FF9020" opacity=".8"/>
+          <!-- stars/lights -->
+          <circle cx="24" cy="38" r="2.5" fill="#FFD040" opacity=".7"/>
+          <circle cx="96" cy="34" r="2" fill="#FFD040" opacity=".6"/>
+          <circle cx="16" cy="58" r="1.8" fill="#FFD040" opacity=".5"/>
+          <circle cx="104" cy="52" r="2.2" fill="#FFD040" opacity=".6"/>
+          <circle cx="44" cy="28" r="1.5" fill="#FFD040" opacity=".5"/>
+          <circle cx="78" cy="26" r="1.8" fill="#FFD040" opacity=".55"/>
+          <!-- ground shadow -->
+          <ellipse cx="60" cy="96" rx="44" ry="6" fill="#C8980A" opacity=".1"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div>
+            <div class="card-name-zh">光明節 · Thadingyut</div>
+            <div class="card-name-my">တန်ဆောင်တိုင်ပွဲ</div>
+          </div>
+          <span class="card-when">每年 10 月</span>
+        </div>
+        <p class="card-desc">佛陀從天界歸返人間的節慶，舉國點燈燃燭以示歡迎。宮廷樂師在佛寺前演奏帕旺鼓圈，燭光與音樂交織，莊嚴而美麗。這是緬甸最具詩意的節日之一。</p>
+        <span class="card-tag" style="background:rgba(200,152,10,.12);color:#8A6800">佛教 · 光明</span>
+      </div>
+      <div class="card-photo-row">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" opacity=".18">
+          <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="photo-label">上傳節慶照片</span>
+      </div>
+    </a>
+
+    <!-- 納特祭 -->
+    <a href="festival-natpwe.html" class="festival-card fc-nat">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 120" fill="none">
+          <!-- nat spirit dancer -->
+          <ellipse cx="60" cy="32" rx="14" ry="15" fill="#E8C49A"/>
+          <ellipse cx="60" cy="20" rx="13" ry="9" fill="#2A1A0A"/>
+          <!-- spirit crown/headdress -->
+          <path d="M60 8 Q56 14 52 12 Q56 20 60 14 Q64 20 68 12 Q64 14 60 8Z" fill="#9A5AC0" opacity=".85"/>
+          <ellipse cx="60" cy="13" rx="10" ry="4" fill="#7A3AAA" opacity=".7"/>
+          <!-- flowing robe - wide and dramatic -->
+          <path d="M44 48 Q60 42 76 48 L90 100 Q60 110 30 100Z" fill="#8A4AC0"/>
+          <path d="M44 48 Q60 42 76 48 L88 94 Q60 106 32 94Z" fill="#AA60E0" opacity=".6"/>
+          <!-- wide spirit sleeves -->
+          <path d="M44 56 Q22 58 8 82 Q18 76 36 74Z" fill="#8A4AC0"/>
+          <path d="M76 56 Q98 58 112 82 Q102 76 84 74Z" fill="#8A4AC0"/>
+          <!-- sleeve tips with glow -->
+          <ellipse cx="8" cy="82" rx="6" ry="4" fill="#C090E8" opacity=".5"/>
+          <ellipse cx="112" cy="82" rx="6" ry="4" fill="#C090E8" opacity=".5"/>
+          <!-- spirit swirls -->
+          <path d="M24 48 Q18 40 24 34 Q30 28 26 22" stroke="#AA60E0" stroke-width="1.5" fill="none" opacity=".4" stroke-linecap="round"/>
+          <path d="M96 48 Q102 40 96 34 Q90 28 94 22" stroke="#AA60E0" stroke-width="1.5" fill="none" opacity=".4" stroke-linecap="round"/>
+          <!-- gold belt -->
+          <rect x="44" y="70" width="32" height="6" rx="3" fill="#C8982A" opacity=".75"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div>
+            <div class="card-name-zh">納特祭 · Nat Pwe</div>
+            <div class="card-name-my">နတ်ပွဲ</div>
+          </div>
+          <span class="card-when">全年各地</span>
+        </div>
+        <p class="card-desc">祭祀緬甸本土神靈「納特」的儀式，靈媒穿戴特定服飾進入附身狀態起舞，傳遞神靈旨意。這是孕育納特靈舞的母體儀式，融合了佛教信仰與更古老的萬物有靈傳統。</p>
+        <span class="card-tag" style="background:rgba(122,58,170,.12);color:#6A2A9A">靈媒 · 儀式</span>
+      </div>
+      <div class="card-photo-row">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" opacity=".18">
+          <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="photo-label">上傳儀式照片</span>
+      </div>
+    </a>
+
+    <!-- 珈斑文化節 -->
+    <a href="festival-kajban.html" class="festival-card fc-kajban">
+      <div class="card-illus">
+        <svg viewBox="0 0 120 120" fill="none">
+          <!-- stage / performance setup -->
+          <!-- audience dots -->
+          <circle cx="24" cy="92" r="5" fill="#2A8A6A" opacity=".4"/>
+          <circle cx="38" cy="96" r="5" fill="#2A8A6A" opacity=".35"/>
+          <circle cx="52" cy="94" r="5" fill="#2A8A6A" opacity=".4"/>
+          <circle cx="66" cy="96" r="5" fill="#2A8A6A" opacity=".35"/>
+          <circle cx="80" cy="92" r="5" fill="#2A8A6A" opacity=".4"/>
+          <circle cx="94" cy="96" r="5" fill="#2A8A6A" opacity=".35"/>
+          <!-- stage platform -->
+          <rect x="20" y="72" width="80" height="16" rx="4" fill="#1A6A50" opacity=".5"/>
+          <!-- performer on stage -->
+          <ellipse cx="60" cy="56" rx="10" ry="11" fill="#E8C49A"/>
+          <ellipse cx="60" cy="46" rx="9" ry="7" fill="#2A1A0A"/>
+          <!-- purple dancer dress -->
+          <path d="M48 68 Q60 63 72 68 L76 86 Q60 90 44 86Z" fill="#7A3A8A"/>
+          <path d="M48 70 Q36 74 28 84" stroke="#7A3A8A" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M72 70 Q84 74 92 84" stroke="#7A3A8A" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- spotlight -->
+          <path d="M60 0 L36 56 L84 56Z" fill="#FFE060" opacity=".12"/>
+          <ellipse cx="60" cy="56" rx="24" ry="6" fill="#FFE060" opacity=".18"/>
+          <!-- stars -->
+          <circle cx="28" cy="18" r="2" fill="#FFD040" opacity=".5"/>
+          <circle cx="92" cy="22" r="1.8" fill="#FFD040" opacity=".45"/>
+          <circle cx="16" cy="40" r="1.5" fill="#FFD040" opacity=".4"/>
+          <circle cx="104" cy="38" r="1.8" fill="#FFD040" opacity=".45"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div>
+            <div class="card-name-zh">珈斑文化節</div>
+            <div class="card-name-my">ကြပ်ပန်း ယဉ်ကျေးမှု ပွဲ</div>
+          </div>
+          <span class="card-when">台灣 · 年度</span>
+        </div>
+        <p class="card-desc">珈斑樂舞團在台灣各地舉辦的年度文化活動，讓在台緬甸社群得以重溫節慶儀式中的音樂與舞蹈，也向台灣社會打開一扇窗，認識這份珍貴的文化遺產。</p>
+        <span class="card-tag" style="background:rgba(26,138,90,.12);color:#0A6840">台灣 · 珈斑</span>
+      </div>
+      <div class="card-photo-row">
+        <svg width="28" height="28" viewBox="0 0 48 48" fill="none" opacity=".18">
+          <rect x="4" y="8" width="40" height="32" rx="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <circle cx="16" cy="19" r="4" stroke="#7A5C38" stroke-width="1.5"/>
+          <path d="M4 32 L14 22 L22 30 L30 22 L44 34" stroke="#7A5C38" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="photo-label">上傳活動照片</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
